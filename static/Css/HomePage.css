@@ -1,0 +1,176 @@
+/* RoleColor Name Hex Code Where to use it
+Primary Teal Green #27ae60 Main Buttons, Active Links, "Good" Results
+Secondary Slate Blue #2c3e50 Headings, Navbar, Footer, Strong Text
+Background Mint Ice #f4f7f6The main page background (easy on eyes)
+Card Bg Pure White #ffffffThe form container (clean look)
+Accent Soft Coral #e74c3c "Clear" buttons, Error messages */
+
+body {
+    background-image: url('background.png'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: "Nunito", sans-serif;
+}
+
+.navbar {
+    background-color: #2c3e50 !important;
+    padding: 15px 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    color: white !important;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+/* MAIN WRAPPER */
+.main-wrapper {
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+/* Contains both the Form and Result cards */
+.content-container {
+    width: 100%;
+    max-width: 900px;
+}
+
+/* COMMON CARD STYLE */
+.custom-card {
+    background-color: rgba(255, 255, 255, 0.98);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+/* FORM STYLES */
+h2 { color: #2c3e50; font-weight: 800; text-align: center;}
+.subtitle { text-align: center; color: #7f8c8d; font-size: 14px; margin-bottom: 20px; }
+label { font-weight: 700; font-size: 14px; margin-bottom: 5px; }
+
+.form-control, .form-select {
+    padding: 12px;
+    border-radius: 10px;
+    border: 2px solid #ecf0f1;
+}
+.form-control:focus, .form-select:focus {
+    border-color: #27ae60;
+    box-shadow: none;
+}
+
+.btn-predict {
+    width: 100%;
+    padding: 15px;
+    background-color: #27ae60;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    margin-top: 15px;
+    transition: transform 0.2s;
+}
+.btn-predict:hover {
+    background-color: #219150;
+    transform: scale(1.02);
+}
+
+/* --- NEW RESULT CARD STYLES --- */
+#result-column {
+    transition: opacity 0.5s ease-in-out;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.ideal-text { font-size: 13px; color: #7f8c8d; font-style: italic; }
+
+/* Dynamic Borders */
+.border-normal { border-top: 5px solid #27ae60; }
+.border-tall   { border-top: 5px solid #9c27b0; }
+.border-stunted{ border-top: 5px solid #f1c40f; }
+.border-severe { border-top: 5px solid #e74c3c; }
+
+/* Dynamic Badge Colors */
+.bg-normal { background: #27ae60; }
+.bg-tall   { background: #9c27b0; }
+.bg-stunted{ background: #f1c40f; }
+.bg-severe { background: #e74c3c; }
+
+/* FOOD CARD */
+.food-card {
+    border: 1px solid #eee;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-top: 15px;
+}
+
+.food-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.food-info {
+    padding: 15px;
+    background: #f9f9f9;
+}
+
+.food-info h5 { margin: 0; font-weight: bold; color: #2c3e50; }
+
+.nutrition-tag {
+    display: inline-block;
+    margin-top: 5px;
+    font-size: 12px;
+    color: #27ae60;
+    background: #e8f5e9;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* SHARED STYLE */
+.btn-recipe {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: bold;
+    color: white;
+    transition: opacity 0.3s;
+}
+
+.btn-recipe:hover {
+    color: white;
+    opacity: 0.8;
+}
+
+/* SPECIFIC COLORS */
+.btn-yt {
+    background-color: #e74c3c;
+}
+
+.btn-web {
+    background-color: #3498db;
+}
