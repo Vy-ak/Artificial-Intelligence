@@ -6,12 +6,12 @@ Card Bg Pure White #ffffffThe form container (clean look)
 Accent Soft Coral #e74c3c "Clear" buttons, Error messages */
 
 body {
-    background-image: url('background.png'); 
+    background-image: url('background.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
-    
+
     margin: 0;
     padding: 0;
     overflow-x: hidden;
@@ -30,7 +30,6 @@ body {
     font-size: 24px;
 }
 
-/* MAIN WRAPPER */
 .main-wrapper {
     min-height: 90vh;
     display: flex;
@@ -39,13 +38,11 @@ body {
     padding: 40px 20px;
 }
 
-/* Contains both the Form and Result cards */
 .content-container {
     width: 100%;
     max-width: 900px;
 }
 
-/* COMMON CARD STYLE */
 .custom-card {
     background-color: rgba(255, 255, 255, 0.98);
     padding: 30px;
@@ -55,7 +52,6 @@ body {
     transition: all 0.3s ease;
 }
 
-/* FORM STYLES */
 h2 { color: #2c3e50; font-weight: 800; text-align: center;}
 .subtitle { text-align: center; color: #7f8c8d; font-size: 14px; margin-bottom: 20px; }
 label { font-weight: 700; font-size: 14px; margin-bottom: 5px; }
@@ -86,7 +82,6 @@ label { font-weight: 700; font-size: 14px; margin-bottom: 5px; }
     transform: scale(1.02);
 }
 
-/* --- NEW RESULT CARD STYLES --- */
 #result-column {
     transition: opacity 0.5s ease-in-out;
 }
@@ -104,19 +99,16 @@ label { font-weight: 700; font-size: 14px; margin-bottom: 5px; }
 
 .ideal-text { font-size: 13px; color: #7f8c8d; font-style: italic; }
 
-/* Dynamic Borders */
 .border-normal { border-top: 5px solid #27ae60; }
 .border-tall   { border-top: 5px solid #9c27b0; }
 .border-stunted{ border-top: 5px solid #f1c40f; }
 .border-severe { border-top: 5px solid #e74c3c; }
 
-/* Dynamic Badge Colors */
 .bg-normal { background: #27ae60; }
 .bg-tall   { background: #9c27b0; }
 .bg-stunted{ background: #f1c40f; }
 .bg-severe { background: #e74c3c; }
 
-/* FOOD CARD */
 .food-card {
     border: 1px solid #eee;
     border-radius: 15px;
@@ -148,7 +140,6 @@ label { font-weight: 700; font-size: 14px; margin-bottom: 5px; }
     font-weight: bold;
 }
 
-/* SHARED STYLE */
 .btn-recipe {
     flex: 1;
     padding: 10px;
@@ -166,11 +157,77 @@ label { font-weight: 700; font-size: 14px; margin-bottom: 5px; }
     opacity: 0.8;
 }
 
-/* SPECIFIC COLORS */
 .btn-yt {
     background-color: #e74c3c;
 }
 
 .btn-web {
     background-color: #3498db;
+}
+
+.info-card {
+    border-left: 6px solid #27ae60; /* Aksen hijau di kiri */
+    background: #ffffff;
+    margin-bottom: 30px; /* Jarak agar tidak mentok bawah layar */
+}
+
+.section-title {
+    font-weight: 800;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.info-text {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #555;
+    text-align: justify;
+}
+
+/* List Pencegahan */
+.prevention-list {
+    list-style: none;
+    padding: 0;
+}
+
+.prevention-list li {
+    background-color: #f8fcf9; /* Latar belakang hijau sangat muda */
+    margin-bottom: 12px;
+    padding: 12px 15px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #e8f5e9;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.prevention-list li:hover {
+    transform: translateX(5px); /* Efek gerak saat di-hover */
+    box-shadow: 0 4px 8px rgba(39, 174, 96, 0.1);
+    background-color: #ffffff;
+    border-color: #27ae60;
+}
+
+.prevention-list .icon {
+    font-size: 20px;
+    margin-right: 15px;
+}
+
+.prevention-list strong {
+    color: #2c3e50;
+}
+
+.prevention-list small {
+    color: #7f8c8d;
+}
+
+/* Responsif untuk HP */
+@media (max-width: 768px) {
+    .info-card {
+        padding: 20px;
+    }
+    .section-title {
+        text-align: center;
+    }
 }

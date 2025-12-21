@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='Css/HomePage.css') }}">
 </head>
 <body>
+
     <nav class="navbar">
         <div class="container-fluid d-flex justify-content-center gap-3">
             <img src="{{ url_for('static', filename='Assets/baby.png') }}" alt="Logo" width="40" height="40">
@@ -18,10 +19,11 @@
 
     <div class="main-wrapper">
         <div class="content-container">
+
             <div class="row g-4 align-items-start">
+
                 <div class="col-md-6">
                     <div class="custom-card form-card">
-
                         <h2>Cek Pertumbuhan</h2>
                         <p class="subtitle">Deteksi Dini Stunting dengan AI</p>
 
@@ -50,12 +52,11 @@
                 <div class="col-md-6" id="result-column" style="display: none; opacity: 0;">
                     <div class="custom-card result-card" id="result-box">
                         <div class="status-badge" id="status-badge">Normal</div>
-                        
+
                         <h3 id="result-title">Normal</h3>
                         <p class="ideal-text" id="ideal-msg">Target: 80cm</p>
-                        
                         <hr>
-                        
+
                         <div class="food-recommendation">
                             <p class="suggestion-intro" id="suggestion-intro">Coba menu ini:</p>
                             <div class="food-card">
@@ -63,13 +64,12 @@
                                 <div class="food-info">
                                     <h5 id="food-name">Food Name</h5>
                                     <span class="nutrition-tag" id="food-nutrition">Nutrition Info</span>
+
                                     <div class="d-flex gap-2 mt-3">
-                                        
                                         <a id="btn-youtube" href="#" target="_blank" class="btn-recipe btn-yt">
                                             <img src="{{ url_for('static', filename='Assets/youtube.png') }}" style="height: 25px; width: 25px;">
                                             Tutorial Resep
                                         </a>
-                                        
                                         <a id="btn-website" href="#" target="_blank" class="btn-recipe btn-web">
                                             <img src="{{ url_for('static', filename='Assets/cookpad.png') }}" style="height: 25px; width: 25px;">
                                             Baca Resep
@@ -78,11 +78,56 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
-            </div> 
-    </div>
+
+            </div>
+            <div class="row mt-5">
+                <div class="col-12"> <div class="custom-card info-card">
+
+                        <div class="row align-items-center">
+                            <div class="col-md-6 mb-4 mb-md-0">
+                                <h3 class="section-title"></h3>Apa itu Stunting?</h3>
+                                <p class="info-text">
+                                    Stunting adalah kondisi <strong>gagal tumbuh</strong> pada anak balita akibat kekurangan gizi kronis,
+                                    terutama pada <strong>1.000 Hari Pertama Kehidupan (HPK)</strong>.
+                                </p>
+                                <div class="alert alert-warning d-flex align-items-center mt-3" role="alert">
+                                    <span style="font-size: 24px; margin-right: 15px;">⚠️</span>
+                                    <div>
+                                        <strong>Dampak Fatal:</strong> Stunting dapat menghambat perkembangan otak, menurunkan IQ, dan melemahkan sistem kekebalan tubuh anak.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <h3 class="section-title text-success">Cara Mencegah Stunting</h3>
+                                <ul class="prevention-list">
+                                    <li>
+                                        <span class="icon">✅</span>
+                                        <div><strong>Penuhi Nutrisi Ibu Hamil</strong><br><small>Konsumsi Tablet Tambah Darah & Asam Folat.</small></div>
+                                    </li>
+                                    <li>
+                                        <span class="icon">✅</span>
+                                        <div><strong>ASI Eksklusif 6 Bulan</strong><br><small>Lanjutkan hingga 2 tahun dengan MPASI.</small></div>
+                                    </li>
+                                    <li>
+                                        <span class="icon">✅</span>
+                                        <div><strong>Protein Hewani Setiap Makan</strong><br><small>Telur, Ikan, Ayam, atau Daging.</small></div>
+                                    </li>
+                                    <li>
+                                        <span class="icon">✅</span>
+                                        <div><strong>Sanitasi & Air Bersih</strong><br><small>Cuci tangan pakai sabun & air mengalir.</small></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div> 
     <script src="{{ url_for('static', filename='Js/HomePage.js') }}"></script>
 </body>
 </html>
-
