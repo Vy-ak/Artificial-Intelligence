@@ -166,9 +166,9 @@ label { font-weight: 700; font-size: 14px; margin-bottom: 5px; }
 }
 
 .info-card {
-    border-left: 6px solid #27ae60; /* Aksen hijau di kiri */
+    border-left: 6px solid #27ae60;
     background: #ffffff;
-    margin-bottom: 30px; /* Jarak agar tidak mentok bawah layar */
+    margin-bottom: 30px;
 }
 
 .section-title {
@@ -185,14 +185,13 @@ label { font-weight: 700; font-size: 14px; margin-bottom: 5px; }
     text-align: justify;
 }
 
-/* List Pencegahan */
 .prevention-list {
     list-style: none;
     padding: 0;
 }
 
 .prevention-list li {
-    background-color: #f8fcf9; /* Latar belakang hijau sangat muda */
+    background-color: #f8fcf9;
     margin-bottom: 12px;
     padding: 12px 15px;
     border-radius: 12px;
@@ -203,7 +202,7 @@ label { font-weight: 700; font-size: 14px; margin-bottom: 5px; }
 }
 
 .prevention-list li:hover {
-    transform: translateX(5px); /* Efek gerak saat di-hover */
+    transform: translateX(5px);
     box-shadow: 0 4px 8px rgba(39, 174, 96, 0.1);
     background-color: #ffffff;
     border-color: #27ae60;
@@ -222,7 +221,6 @@ label { font-weight: 700; font-size: 14px; margin-bottom: 5px; }
     color: #7f8c8d;
 }
 
-/* Responsif untuk HP */
 @media (max-width: 768px) {
     .info-card {
         padding: 20px;
