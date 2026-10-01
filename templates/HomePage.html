@@ -1,133 +1,225 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Growth Forecaster - Cek Stunting AI</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='Css/HomePage.css') }}">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tumbuh Sehat — Cek Status Pertumbuhan Anak</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Palette */
+    --celadon:#BAF2BB;
+    --mint:#BAF2D8;
+    --sky:#BAD7F2;
+    --blossom:#F2BAC9;
+    --beige:#F2E2BA;
+    /* Text (neutral, for readability) */
+    --ink:#1f2a2e;
+    --ink-soft:rgba(31,42,46,.65);
+    --line:rgba(31,42,46,.15);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:var(--ink);background:var(--beige);line-height:1.5}
+
+  .wrap{max-width:560px;margin:0 auto;padding:40px 20px 56px}
+
+  header{margin-bottom:28px}
+  .intro-row{display:flex;align-items:center;gap:16px}
+  .hero-img{width:96px;height:96px;object-fit:contain;flex-shrink:0}
+  .links a{display:flex;align-items:center;justify-content:center;gap:8px}
+  .food .links a img{display:inline;width:18px;height:18px;object-fit:contain;border:0}
+  header .brand{font-weight:700;font-size:15px;margin-bottom:20px}
+  h1{font-size:30px;font-weight:700;line-height:1.25;margin-bottom:10px}
+  header p{color:var(--ink-soft);font-size:15px}
+
+  .card{background:var(--mint);border:1px solid var(--line);border-radius:16px;padding:24px}
+
+  label{display:block;font-weight:600;font-size:14px;margin-bottom:6px}
+  .field{margin-bottom:18px}
+  .input{position:relative}
+  .input input{
+    width:100%;padding:12px 64px 12px 14px;border-radius:10px;border:1px solid var(--line);
+    font:inherit;font-size:16px;color:var(--ink);background:var(--beige);outline:none
+  }
+  .input input:focus{border-color:var(--ink)}
+  .input span{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--ink-soft);font-size:14px}
+
+  .gender{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .gender input{display:none}
+  .gender label{
+    margin:0;cursor:pointer;border:1px solid var(--line);border-radius:10px;padding:12px;
+    text-align:center;font-weight:500;background:var(--beige)
+  }
+  #boy:checked + label{background:var(--sky);border-color:var(--ink)}
+  #girl:checked + label{background:var(--blossom);border-color:var(--ink)}
+
+  button{
+    width:100%;margin-top:6px;padding:13px;border:1px solid var(--ink);border-radius:10px;cursor:pointer;
+    font:inherit;font-size:16px;font-weight:600;color:var(--ink);background:var(--celadon)
+  }
+  button:hover{background:var(--sky)}
+  button:disabled{cursor:wait;opacity:.7}
+
+  .err{display:none;margin-top:12px;padding:10px 12px;border-radius:10px;background:var(--blossom);font-size:14px}
+
+  /* results */
+  #result{display:none;margin-top:24px}
+  .status{background:var(--tint,var(--mint));margin-bottom:16px}
+  .status small{font-size:13px;color:var(--ink-soft)}
+  .status h2{font-size:26px;margin:2px 0 10px}
+  .status p{font-size:14px}
+  .meta{margin-top:10px;font-size:13px;color:var(--ink-soft)}
+
+  .food{background:var(--sky);padding:0;overflow:hidden}
+  .food img{display:block;width:100%;height:200px;object-fit:cover;border-bottom:1px solid var(--line)}
+  .food .body{padding:20px 24px 24px}
+  .food .intro{font-size:14px;color:var(--ink-soft)}
+  .food h3{font-size:21px;margin:2px 0 6px}
+  .food .nutri{font-size:14px;margin-bottom:16px}
+  .links{display:flex;gap:10px}
+  .links a{
+    flex:1;text-align:center;text-decoration:none;color:var(--ink);font-size:14px;font-weight:600;
+    padding:10px;border-radius:10px;border:1px solid var(--ink)
+  }
+  .yt{background:var(--blossom)}
+  .web{background:var(--beige)}
+  .links a:hover{background:var(--celadon)}
+
+  footer{text-align:center;color:var(--ink-soft);font-size:12px;margin-top:36px}
+</style>
 </head>
 <body>
+<div class="wrap">
+  <header>
+    <div class="brand">Growth Forecast</div>
+    <div class="intro-row">
+      <div>
+        <h1>Cek status pertumbuhan anak</h1>
+        <p>Masukkan umur, tinggi badan, dan jenis kelamin anak untuk melihat perkiraan status pertumbuhan dan rekomendasi menu bergizi.</p>
+      </div>
+      <img class="hero-img" src="/static/Assets/baby.png" alt="" onerror="this.remove()">
+    </div>
+  </header>
 
-    <nav class="navbar">
-        <div class="container-fluid d-flex justify-content-center gap-3">
-            <img src="{{ url_for('static', filename='Assets/baby.png') }}" alt="Logo" width="40" height="40">
-            <span class="navbar-brand">Growth Forecaster</span>
+  <form class="card" id="form" novalidate>
+    <div class="field">
+      <label for="age">Umur anak</label>
+      <div class="input"><input type="number" id="age" min="0" max="60" step="1" placeholder="18" required><span>bulan</span></div>
+    </div>
+
+    <div class="field">
+      <label for="height">Tinggi badan</label>
+      <div class="input"><input type="number" id="height" min="30" max="130" step="0.1" placeholder="80.5" required><span>cm</span></div>
+    </div>
+
+    <div class="field">
+      <label>Jenis kelamin</label>
+      <div class="gender">
+        <input type="radio" name="gender" id="boy" value="Laki-laki" checked>
+        <label for="boy">Laki-laki</label>
+        <input type="radio" name="gender" id="girl" value="Perempuan">
+        <label for="girl">Perempuan</label>
+      </div>
+    </div>
+
+    <button type="submit" id="btn">Analisis</button>
+    <div class="err" id="err"></div>
+  </form>
+
+  <section id="result">
+    <div class="card status" id="statusCard">
+      <small>Status pertumbuhan</small>
+      <h2 id="statusText"></h2>
+      <p id="ideal"></p>
+      <div class="meta" id="meta"></div>
+    </div>
+
+    <div class="card food">
+      <div id="foodImg"></div>
+      <div class="body">
+        <div class="intro" id="intro"></div>
+        <h3 id="foodName"></h3>
+        <div class="nutri" id="nutri"></div>
+        <div class="links">
+          <a class="yt" id="yt" target="_blank" rel="noopener"><img src="/static/Assets/youtube.png" alt="" onerror="this.remove()">Tonton resep</a>
+          <a class="web" id="web" target="_blank" rel="noopener"><img src="/static/Assets/cookpad.png" alt="" onerror="this.remove()">Baca resep</a>
         </div>
-    </nav>
+      </div>
+    </div>
+  </section>
 
-    <div class="main-wrapper">
-        <div class="content-container">
+  <footer>Hasil ini bersifat informatif dan bukan pengganti pemeriksaan dokter atau posyandu.</footer>
+</div>
 
-            <div class="row g-4 align-items-start">
+<script>
+  // Status card color, matched by status text
+  const TINT = {
+    "Normal": "var(--celadon)",
+    "Tall": "var(--sky)",
+    "Stunted": "var(--beige)",
+    "Severely Stunted": "var(--blossom)"
+  };
+  const LABEL_ID = {
+    "Normal":"Normal", "Tall":"Tinggi", "Stunted":"Stunting", "Severely Stunted":"Stunting Berat"
+  };
 
-                <div class="col-md-6">
-                    <div class="custom-card form-card">
-                        <h2>Cek Pertumbuhan</h2>
-                        <p class="subtitle">Deteksi Dini Stunting dengan AI</p>
+  const $ = id => document.getElementById(id);
+  const form = $('form'), btn = $('btn'), err = $('err');
 
-                        <div class="mb-3">
-                            <label>Jenis Kelamin</label>
-                            <select id="gender" class="form-select">
-                                <option value="Laki-laki">Laki-laki</option>
-                                <option value="Perempuan">Perempuan</option>
-                            </select>
-                        </div>
+  function showError(msg){ err.textContent = msg; err.style.display = 'block'; }
 
-                        <div class="mb-3">
-                            <label>Umur (Bulan)</label>
-                            <input type="number" id="age" class="form-control" placeholder="Contoh: 12">
-                        </div>
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    err.style.display = 'none';
 
-                        <div class="mb-3">
-                            <label>Tinggi Badan (cm)</label>
-                            <input type="number" id="height" step="0.1" class="form-control" placeholder="Contoh: 75.5">
-                        </div>
+    const age = $('age').value, height = $('height').value;
+    const gender = document.querySelector('input[name=gender]:checked').value;
+    if (age === '' || height === '') return showError('Mohon isi umur dan tinggi badan anak.');
 
-                        <button class="btn-predict" onclick="predictGrowth()">Analyze Now</button>
-                    </div>
-                </div>
+    btn.disabled = true; btn.textContent = 'Menganalisis...';
 
-                <div class="col-md-6" id="result-column" style="display: none; opacity: 0;">
-                    <div class="custom-card result-card" id="result-box">
-                        <div class="status-badge" id="status-badge">Normal</div>
+    try {
+      const res = await fetch('/predict', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({age, height, gender})
+      });
+      const d = await res.json();
+      if (d.error) throw new Error(d.error);
+      render(d, age, height, gender);
+    } catch (ex) {
+      showError('Terjadi kesalahan: ' + ex.message);
+    } finally {
+      btn.disabled = false; btn.textContent = 'Analisis';
+    }
+  });
 
-                        <h3 id="result-title">Normal</h3>
-                        <p class="ideal-text" id="ideal-msg">Target: 80cm</p>
-                        <hr>
+  function render(d, age, height, gender){
+    $('statusCard').style.setProperty('--tint', TINT[d.status] || 'var(--mint)');
+    $('statusText').textContent = LABEL_ID[d.status] || d.status;
+    $('ideal').textContent = d.ideal_height_msg;
+    $('meta').textContent = `${age} bulan · ${height} cm · ${gender}`;
 
-                        <div class="food-recommendation">
-                            <p class="suggestion-intro" id="suggestion-intro">Coba menu ini:</p>
-                            <div class="food-card">
-                                <img id="food-img" src="https://placehold.co/400x200?text=Food+Image" alt="Food">
-                                <div class="food-info">
-                                    <h5 id="food-name">Food Name</h5>
-                                    <span class="nutrition-tag" id="food-nutrition">Nutrition Info</span>
+    $('intro').textContent = d.suggestion_intro;
+    $('foodName').textContent = d.food_name;
+    $('nutri').textContent = d.food_nutrition;
 
-                                    <div class="d-flex gap-2 mt-3">
-                                        <a id="btn-youtube" href="#" target="_blank" class="btn-recipe btn-yt">
-                                            <img src="{{ url_for('static', filename='Assets/youtube.png') }}" style="height: 25px; width: 25px;">
-                                            Tutorial Resep
-                                        </a>
-                                        <a id="btn-website" href="#" target="_blank" class="btn-recipe btn-web">
-                                            <img src="{{ url_for('static', filename='Assets/cookpad.png') }}" style="height: 25px; width: 25px;">
-                                            Baca Resep
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+    const box = $('foodImg');
+    box.innerHTML = '';
+    if (d.food_image){
+      const img = new Image();
+      img.alt = d.food_name;
+      img.src = '/static/Assets/' + d.food_image;
+      img.onerror = () => img.remove();
+      box.appendChild(img);
+    }
+    $('yt').href = d.food_youtube;
+    $('web').href = d.food_website;
 
-                    </div>
-                </div>
-
-            </div>
-            <div class="row mt-5">
-                <div class="col-12"> <div class="custom-card info-card">
-
-                        <div class="row align-items-center">
-                            <div class="col-md-6 mb-4 mb-md-0">
-                                <h3 class="section-title"></h3>Apa itu Stunting?</h3>
-                                <p class="info-text">
-                                    Stunting adalah kondisi <strong>gagal tumbuh</strong> pada anak balita akibat kekurangan gizi kronis,
-                                    terutama pada <strong>1.000 Hari Pertama Kehidupan (HPK)</strong>.
-                                </p>
-                                <div class="alert alert-warning d-flex align-items-center mt-3" role="alert">
-                                    <span style="font-size: 24px; margin-right: 15px;">⚠️</span>
-                                    <div>
-                                        <strong>Dampak Fatal:</strong> Stunting dapat menghambat perkembangan otak, menurunkan IQ, dan melemahkan sistem kekebalan tubuh anak.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <h3 class="section-title text-success">Cara Mencegah Stunting</h3>
-                                <ul class="prevention-list">
-                                    <li>
-                                        <span class="icon">✅</span>
-                                        <div><strong>Penuhi Nutrisi Ibu Hamil</strong><br><small>Konsumsi Tablet Tambah Darah & Asam Folat.</small></div>
-                                    </li>
-                                    <li>
-                                        <span class="icon">✅</span>
-                                        <div><strong>ASI Eksklusif 6 Bulan</strong><br><small>Lanjutkan hingga 2 tahun dengan MPASI.</small></div>
-                                    </li>
-                                    <li>
-                                        <span class="icon">✅</span>
-                                        <div><strong>Protein Hewani Setiap Makan</strong><br><small>Telur, Ikan, Ayam, atau Daging.</small></div>
-                                    </li>
-                                    <li>
-                                        <span class="icon">✅</span>
-                                        <div><strong>Sanitasi & Air Bersih</strong><br><small>Cuci tangan pakai sabun & air mengalir.</small></div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> 
-    </div> 
-    <script src="{{ url_for('static', filename='Js/HomePage.js') }}"></script>
+    $('result').style.display = 'block';
+    $('result').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+</script>
 </body>
 </html>
